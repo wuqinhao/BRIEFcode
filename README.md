@@ -6,6 +6,7 @@ Also, this BRIEF code offers the change of BRIEF patch size and sample pair numb
 the BRIEF histogram of the whold image. The outcome can be printed in txt file.
 
 28-11-2016 update
+
 1. Bug fixed
 	*BRIEF number calculation for each patch
 	*Mat datatype are now mainly <unsigned>, which cannot be 	 shown by imshow(). Alternatively, use BRIEF::writeFile() 	 to pull out Mat matrix.
