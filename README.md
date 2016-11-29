@@ -10,6 +10,7 @@ the BRIEF histogram of the whold image. The outcome can be printed in txt file.
 	*BRIEF number calculation for each patch
 	*Mat datatype are now mainly <unsigned>, which cannot be 	 shown by imshow(). Alternatively, use BRIEF::writeFile() 	 to pull out Mat matrix.
 	*Sample generated can overlap now.
+
 2. New method add on
 	*calBRIEFOverlap() - calculate BRIEF patch pixel by 	pixel;
 	*compareHistogramNB() - create Naive Bayes classifier 	based on two texture's model histograms;
@@ -17,6 +18,7 @@ the BRIEF histogram of the whold image. The outcome can be printed in txt file.
 	*combine_picture() - combine two images together based 	on two masks: circle and square;
 	*recreate_NBpicture() - recreate result picture after 	segmentation;
 	*histogramAdd() & histogramMinus() - add and minus 	calculation for two histograms.
+
 3. Main function
 	*It is used to evaluate how Sample_Number affecting 	segmentation performance based on fixed Patch_Size and 
         Sample_Number. The result is shown as a .txt file.
