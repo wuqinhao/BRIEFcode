@@ -843,7 +843,7 @@ double BRIEF::cal_threshold(Mat image, int channel, int gStd)
 	dev1 = image - outmat;
 
 	meanStdDev(dev1, mean, stddev); //standard deviation of image
-	double threshold = stddev.val[0] * 2;
+	double threshold = stddev.val[0] * 3;
 
 	return threshold;
 }
