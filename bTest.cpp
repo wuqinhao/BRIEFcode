@@ -21,19 +21,12 @@
 #include <cmath>
 #include <omp.h>
 #include <TCHAR.h>
-//#include "C:\Program Files\boost\boost_1_62_0\boost\unordered\unordered_map.hpp"
-//#include <direct.h>
-//#include <pthread.h>  
 #define M_PI       3.14159265358979323846 
-
 
 using namespace cv;
 using namespace std;
-//using namespace concurrency;
-//using namespace boost::unordered;
 
 typedef std::tuple<int, int, int> location;
-
 
 class BRIEF
 {
@@ -50,32 +43,20 @@ public:
 	int sample_pair;
 	int flag_col;
 	int flag_row;
-	//int * result;
 	int result_size;
-	//double gKernel[5];
-	//map<int, int> NBresult;
-	//map<int, int> histogram;
-	//map<int, int> histogramS;
-	//map<location, float> peak;
 
 	BRIEF();
 	BRIEF(Mat img);
 	BRIEF(Mat img, Mat sp);
 	BRIEF(Mat img1, Mat img2, String sp_loca);
 	int calBRIEF(int window_size, int sample_pair, int colour);
-	//int calBRIEF(Mat img, int colour);
 	int calBRIEFOverlap(int w_size, int s_pair, int colour);
 	//the order for RGB is 210 
 
-	//map <int, int> compareHistogramNB(map<int, int> m1, map<int, int> m2);
 	int imageSegmentation(Mat test_image, int a_size, Mat texture1, Mat texture2, int w_size, int s_pair, int colour, string loca);
 	Mat combine_picture(Mat src1, Mat src2, int shape);
-	//int recreate_NBpicture();
 	Mat accHistogram();
-	//map<int, int> accHistogram(Mat input);
 	Mat accHistogramSum();
-	//map<int, int> histogramAdd(map<int, int> in1, map<int, int> in2);
-	//map <int, int> histogramMinus(map<int, int> m1, map<int, int> m2);
 	int writeFile(Mat sample);
 	int writeFile(Mat sample, string loca);
 	int writeFile3D(Mat src, int histSize[3], int number, string input);
@@ -87,24 +68,13 @@ public:
 	int writeFile();
 	int readFile(String loca);
 	map<int, int> readFile(String loca, map<int, int> out);
-	//double timesTogether(map<int, int> m, int n);
 	int cleanMap();
-	//Mat calc3D(int histSize[3]);
-	//map<location, float> findDominantPeakPoint(Mat hist, int histSize[3]);
-	//Mat blur3D(Mat hist, int histSize[3]);
-	//unordered_map<int, int> mapConvertToUnordered(map<int, int> m1);
-	//Mat mapConvertToMat(map<int, int> m1, int hist_size);
 	~BRIEF();
 
 protected:
 
-	//bool judgePeak(map<location, float> peak);
-	//map<location, float> combinePeak(map<location, float> peak1, map<location, float> peak2, map<location, float> peak3);
 	Mat gaussian_kernel(int sigma, int dim);
-
 	int reflect(int M, int x);
-	//double * createDGFilter(double gKernel[5]);
-	//double(*orthDGFilter(double gKernel[5], double kernel[][5]))[5];
 	void init_descriptor(int window_size, int smaple_pair);
 	int cal_window_sample(Mat window, Mat sample, double threshold, int colour);
 	double cal_threshold(Mat image, int channel, int gStd);
@@ -117,7 +87,6 @@ BRIEF::BRIEF(Mat img)
 	sample_pair = 9;
 	flag_col = 0;
 	flag_row = 0;
-	//result = NULL;
 	result_size = 0;
 
 }
@@ -130,7 +99,6 @@ BRIEF::BRIEF(Mat img, Mat sp)
 	sample_pair = 9;
 	flag_col = 0;
 	flag_row = 0;
-	//result = NULL;
 	result_size = 0;
 
 }
@@ -143,7 +111,6 @@ BRIEF::BRIEF(Mat img1, Mat img2, String sp_loca)
 	sample_pair = 9;
 	flag_col = 0;
 	flag_row = 0;
-	//result = NULL;
 	result_size = 0;
 }
 
@@ -153,7 +120,6 @@ BRIEF::BRIEF()
 	sample_pair = 9;
 	flag_col = 0;
 	flag_row = 0;
-	//result = NULL;
 	result_size = 0;
 }
 
@@ -379,22 +345,6 @@ string loca: Output location
 		temp.release();
 	}
 	//);
-	/*
-	double correct = 0.0;
-	for (int i = 0; i < collect.rows; i++)
-		for (int j = 0; j < collect.cols; j++)
-		{
-			if (j < (int)collect.cols / 2)
-				if (collect.at<double>(i, j) == 0.0)
-					correct++;
-				else continue;
-			else
-				if (collect.at<double>(i, j) == 1.0)
-					correct++;
-		}
-	correct /= (collect.rows * collect.cols);
-	cout << correct << endl;
-	*/
 
 	writeFile(collect, loca);
 	
@@ -422,63 +372,6 @@ Mat BRIEF::accHistogram()
 	return hist;
 }
 
-/*
-map<int, int> BRIEF::accHistogram()
-{
-map<int, int>::iterator h_It;
-int * ptr = result;
-for (int i = 0; i < result_size; i++)
-{
-//histogram
-h_It = histogram.find((*ptr));
-if (h_It == histogram.end())
-histogram.insert(pair <int, int>(*ptr, 1));
-else
-(h_It->second)++;
-ptr++;
-}
-map<int, int> h = histogram;
-return h;
-}*/
-/*
-map<int, int> BRIEF::accHistogram(Mat input)
-{
-	map<int, int>::iterator h_It;
-	map<int, int> h;
-
-	//int * ptr = result;
-	for (int i = 0; i < input.rows; i++)
-		for (int j = 0; j < input.cols; j++)
-		{
-			//histogram
-			h_It = h.find((input.at<float>(i, j)));
-			if (h_It == h.end())
-				h.insert(pair <int, int>((input.at<float>(i, j)), 1));
-			else
-				(h_It->second)++;
-		}
-
-	return h;
-}
-*/
-/*
-map<int, int> BRIEF::accHistogramSum()
-{
-map<int, int>::iterator h_It;
-int * ptr = result;
-for (int i = 0; i < result_size; i++)
-{
-h_It = histogramS.find((*ptr));
-if (h_It == histogramS.end())
-histogramS.insert(pair <int, int>(*ptr, 1));
-else (h_It->second)++;
-ptr++;
-}
-map<int, int> h = histogramS;
-return h;
-}
-*/
-
 Mat BRIEF::accHistogramSum()
 {
 	int nimages = 1;
@@ -495,100 +388,7 @@ Mat BRIEF::accHistogramSum()
 
 	return histS;
 }
-/*
-map<int, int> BRIEF::histogramAdd(map<int, int> in1, map<int, int> in2)
-{
-	map<int, int> sum;
-	map<int, int>::iterator m1, m2;
-	int bin_number = pow(2, sample_pair);
 
-	for (int i = 0; i < bin_number; i++)
-	{
-		m1 = in1.find(i);
-		m2 = in2.find(i);
-
-		if (m1 != in1.end())
-		{
-			if (m2 != in2.end())
-				sum.insert(pair<int, int>(m1->first, (m1->second + m2->second)));
-			else
-				sum.insert(pair<int, int>(m1->first, m1->second));
-		}
-		else if (m2 != in2.end())
-		{
-			sum.insert(pair<int, int>(m2->first, m2->second));
-		}
-	}
-
-	return sum;
-}
-
-map <int, int> BRIEF::histogramMinus(map<int, int> in1, map<int, int> in2)
-{
-	map<int, int> sum;
-	map<int, int>::iterator m1, m2;
-	int bin_number = pow(2, sample_pair);
-	int result;
-
-	for (int i = 0; i < bin_number; i++)
-	{
-		m1 = in1.find(i);
-		m2 = in2.find(i);
-
-		if (m1 != in1.end())
-		{
-			if (m2 != in2.end())
-			{
-				result = abs(m1->second - m2->second);
-				sum.insert(pair<int, int>(m1->first, result));
-			}
-			else
-				sum.insert(pair<int, int>(m1->first, m1->second));
-		}
-		else if (m2 != in2.end())
-		{
-			sum.insert(pair<int, int>(m2->first, m2->second));
-		}
-	}
-
-	return sum;
-}
-
-double BRIEF::timesTogether(map<int, int> m, int n)
-{
-	double a = 1;
-	map<int, int>::iterator h_It;
-
-	//h_It++;//avoid 0 value
-	for (h_It = m.begin(); h_It != m.end(); h_It++)
-	{
-		if (h_It->second != 0)
-			a = a * h_It->second / n;
-	}
-	return a;
-}
-
-unordered_map<int, int> BRIEF::mapConvertToUnordered(map<int, int> m1)
-{
-	unordered_map<int, int> output;
-	map<int, int>::iterator h_It;
-	for (h_It = m1.begin(); h_It != m1.end(); h_It++)
-		output.insert(pair<int, int>(h_It->first, h_It->second));
-
-	return output;
-}
-
-Mat BRIEF::mapConvertToMat(map<int, int> m1, int hist_size)
-{
-	Mat output = Mat::zeros(hist_size, 1, CV_32FC1);
-	map<int, int>::iterator h_It;
-
-	for (h_It = m1.begin(); h_It != m1.end(); h_It++) {
-		output.at<float>(h_It->first, 0) = (float)(h_It->second);
-	}
-	return output;
-}
-*/
 int BRIEF::cleanMap()
 {
 	//histogramS.clear();
@@ -970,7 +770,7 @@ Mat BRIEF::combine_picture(Mat src1, Mat src2, int shape) //default - circle
 
 	return image;
 }
-/*
+
 int main(int argc, char* argv[])
 {
 
@@ -989,7 +789,7 @@ int main(int argc, char* argv[])
 	map<int, int> n2;
 	map<int, int> tex1;
 	map<int, int> tex2;
-	
+	*/
 	string it_number[7] = { "01", "02", "08", "10", "16", "19", "24" };
 	int cnt = 0;
 	int Patch_Size = 33;
@@ -1199,19 +999,6 @@ int main(int argc, char* argv[])
 	delete [] location3;
 	
 	cv::waitKey(0);
-	cin.get();
-	return 0;
-}
-*/
-int _tmain(int argc, _TCHAR* argv[])
-{
-#pragma omp parallel for num_threads(2)
-	for (int i = 0; i < 10; i++)
-	{
-	cout << "hello " <<omp_get_thread_num()<< endl;
-	cout << omp_get_max_threads() << endl;
-	}
-
 	cin.get();
 	return 0;
 }
