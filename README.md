@@ -6,7 +6,7 @@ Binary string contribution now is when (p1-p2)>3*sigma. Here, sigma means the no
 The binary string is processed in BRIEF::cal_window_sample.
 
 Also, this BRIEF code offers the change of BRIEF patch size and sample pair number. The main output is
-the BRIEF histogram of the whole image. The outcome can be printed as the txt file.
+the BRIEF histogram of the whole image. The outcome can be printed as the txt file. SVM and Nearest Neighbour classifier is offered in svm_multiple.cpp. The files are saved in xml format. 
 
 12-12-2018
 
