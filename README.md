@@ -9,7 +9,9 @@ Also, this BRIEF code offers the change of BRIEF patch size and sample pair numb
 the BRIEF histogram of the whole image. The outcome can be printed as the txt file.
 
 12-12-2018
+
 Process improved: functions were updated by using OpenCV APIs.
 
 24-02-2017
+
 Bug fixed: including overlapping patch, test data mask, and parallel computing. Fixed threshold bug: all using opencv methods now.
