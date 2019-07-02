@@ -12,6 +12,7 @@ the BRIEF histogram of the whole image. The outcome can be printed as the txt fi
 
 Upload BRIEF.h including class implementation.
 Threshold calculation replaced by 3*sigma+abs(mean): higher threshold for better classification result.
+btest.cpp archived: legacy code.
 
 12-12-2018
 
