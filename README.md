@@ -2,7 +2,8 @@
 
 Did not offer the .h file. All presented as the raw implementation, so that it could be modified by different needs. The pipeline would be shown in the main function.
 
-Binary string contribution now is when (p1-p2)>3*sigma. Here, sigma means the noise standard deviation. 
+Binary string contribution now is when (p1-p2)> Threshold, calculated in BRIEF::cal_threshold.
+
 The binary string is processed in BRIEF::cal_window_sample.
 
 Also, this BRIEF code offers the change of BRIEF patch size and sample pair number. The main output is
