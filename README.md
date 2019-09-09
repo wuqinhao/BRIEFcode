@@ -2,7 +2,7 @@
 
 BRIEF class is packed and prepared in the BRIEF.h file. 
 
-All presented as the raw implementation in C++ with OpenCV and OpenMP, so that it could be modified by different needs. The pipeline would be shown in the main function btest.cpp. The accept image type is the general opencv accepting types. Any further updates will be listed below.
+All presented as the raw implementation in C++ with OpenCV (v3.0) and OpenMP (v4.5), so that it could be modified by different needs. The pipeline would be shown in the main function btest.cpp. The accept image type is the general opencv accepting types. Any further updates will be listed below.
 
 Binary string contribution now is when (p1-p2)> Threshold, calculated in BRIEF::cal_threshold.
 
