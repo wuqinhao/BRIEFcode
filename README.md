@@ -1,6 +1,6 @@
 # BRIEFcode
 
-BRIEF class is packed and prepared in the BRIEF.h file. 
+BRIEF class is packed and prepared in the BRIEF.h file. The usage needs both BRIEF.cpp and BRIEF.h adding into the project or solution. 
 
 All presented as the raw implementation in C++ with OpenCV (v3.0) and OpenMP (v4.5), so that it could be modified by different needs. The pipeline would be shown in the main function btest.cpp. The accept image type is the general opencv accepting types. Any further updates will be listed below.
 
