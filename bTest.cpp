@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Time.h"
 #include <iostream>
 #include "opencv2/core.hpp"
@@ -331,8 +331,20 @@ string loca: Output location
 		rlt(rect).copyTo(temp);
 		calcHist(&temp, nimages, &channels, Mat(), temp_hist, dims, histSize, histRange, uniform, accumulate);
 		
-		r1 = compareHist(texture1, temp_hist/*histogramTable[i]*/, CV_COMP_CHISQR);
-		r2 = compareHist(texture2, temp_hist/*histogramTable[i]*/, CV_COMP_CHISQR);
+		/*
+		enum HistCompMethods
+{
+    HISTCMP_CORREL        = 0,
+    HISTCMP_CHISQR        = 1,
+    HISTCMP_INTERSECT     = 2,
+    HISTCMP_BHATTACHARYYA = 3,
+    HISTCMP_HELLINGER     = HISTCMP_BHATTACHARYYA,
+    HISTCMP_CHISQR_ALT    = 4,
+    HISTCMP_KL_DIV        = 5,
+};
+		*/
+		r1 = compareHist(texture1, temp_hist/*histogramTable[i]*/, 1);
+		r2 = compareHist(texture2, temp_hist/*histogramTable[i]*/, 1);
 
 		//chisquared test: smaller value achieves higher similarity.
 		//texture 1 uses 0 to represent. texture 2 uses 255 to represent.
@@ -799,6 +811,9 @@ int main(int argc, char* argv[])
 	int Neighbour = 3;
 	int repeat = 0;
 
+	BRIEF brief;
+	cout << brief.window_size << endl;
+	
 	//for (int it_it = 3; it_it < 4; it_it++)
 	//{
 	int it_it = 3;
@@ -859,7 +874,7 @@ int main(int argc, char* argv[])
 					texture1 = BRIEF::BRIEF();
 					for (int i = 0; i < 20; i++)
 					{
-						texture1.image = imread(location1[i], CV_LOAD_IMAGE_GRAYSCALE);
+						texture1.image = imread(location1[i], 1);
 						texture1.calBRIEFOverlap(Patch_Size, Sample_Number, 0);
 						texture1.accHistogramSum();
 							//texture1.sample.release();
@@ -870,7 +885,7 @@ int main(int argc, char* argv[])
 
 					for (int i = 20; i < 40; i++)
 						{
-							texture1.image = imread(location1[i], CV_LOAD_IMAGE_GRAYSCALE);
+							texture1.image = imread(location1[i], 1);
 							texture1.calBRIEFOverlap(Patch_Size, Sample_Number, 0);
 							texture1.accHistogramSum();
 						}
@@ -883,7 +898,7 @@ int main(int argc, char* argv[])
 					texture2 = BRIEF::BRIEF(texture1.image, texture1.sample);
 					for (int i = 0; i < 20; i++)
 						{
-							texture2.image = imread(location2[i], CV_LOAD_IMAGE_GRAYSCALE);
+							texture2.image = imread(location2[i], 1);
 							texture2.calBRIEFOverlap(Patch_Size, Sample_Number, 0);
 							texture2.accHistogramSum();
 						}
@@ -893,7 +908,7 @@ int main(int argc, char* argv[])
 
 					for (int i = 20; i < 40; i++)
 						{
-							texture2.image = imread(location2[i], CV_LOAD_IMAGE_GRAYSCALE);
+							texture2.image = imread(location2[i], 1);
 							texture2.calBRIEFOverlap(Patch_Size, Sample_Number, 0);
 							texture2.accHistogramSum();
 						}
@@ -912,9 +927,9 @@ int main(int argc, char* argv[])
 					for (int i = startnumber; i < 40; i++)
 					{
 						Mat tempImg, tempImg2;
-						tempImg = imread(location1[i], CV_LOAD_IMAGE_GRAYSCALE);
+						tempImg = imread(location1[i], 1);
 						cout << location1[i] << endl;
-						tempImg2 = imread(location2[i], CV_LOAD_IMAGE_GRAYSCALE);
+						tempImg2 = imread(location2[i], 1);
 						cout << location2[i] << endl;
 						BRIEF tempTry = BRIEF::BRIEF(tempImg, texture1.sample);
 						tempTry.combine_picture(tempImg, tempImg2, 0).copyTo(tempTry.image);
