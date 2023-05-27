@@ -11,6 +11,10 @@ The binary string is processed in BRIEF::cal_window_sample.
 Also, this BRIEF code offers the change of BRIEF patch size and sample pair number. The main output is
 the BRIEF histogram of the whole image. The outcome can be printed as the txt file. SVM and Nearest Neighbour classifier is offered in svm_multiple.cpp. The files are saved in xml format. 
 
+27-05-2023
+
+The code is currently updated. The quick access can be achieved by installing Visual Studio 2022, Git, and VCPKG. For VCPKG, please follow the guide from https://vcpkg.io/en/getting-started.html. Please place the git clone of this project at the same folder of VCPKG.
+
 07-02-2019
 
 Upload BRIEF.h including class implementation.
